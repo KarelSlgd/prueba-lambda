@@ -10,9 +10,15 @@ jobs:
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12'
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
@@ -32,7 +38,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Package AWS SAM Application
-        run: sam build --template template.yml
+        run: sam build --template template.yaml
 
       - name: Deploy AWS SAM Application
-        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name untitled --capabilities CAPABILITY_IAM
+        run: sam deploy --template-file .aws-sam/build/template.yaml --stack-name untitled --capabilities CAPABILITY_IAM
