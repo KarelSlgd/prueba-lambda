@@ -35,4 +35,4 @@ jobs:
         run: sam build --template template.yml
 
       - name: Deploy AWS SAM Application
-        run: sam deploy --template-file .aws-sam/build/template.yaml --stack-name untitled --capabilities CAPABILITY_IAM
+        run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name untitled --capabilities CAPABILITY_IAM

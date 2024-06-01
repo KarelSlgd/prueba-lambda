@@ -1,0 +1,11 @@
+version = 0.1
+[default.pipeline_bootstrap.parameters]
+pipeline_user = "arn:aws:iam::905418253268:user/aws-sam-cli-managed-prueba-pipeline-re-PipelineUser-7nBk5SBiERDi"
+permissions_provider = "AWS IAM"
+
+[prueba.pipeline_bootstrap.parameters]
+pipeline_execution_role = "a"
+cloudformation_execution_role = "a"
+artifacts_bucket = ""
+image_repository = ""
+region = "us-east-1"
