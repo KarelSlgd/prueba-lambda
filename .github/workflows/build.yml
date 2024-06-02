@@ -66,10 +66,10 @@ jobs:
           AWS_DEFAULT_REGION: us-east-1
       - name: Debug Env Variables
         run: |
-          echo "RDS_HOST: $RDS_HOST"
-          echo "DB_USERNAME: $DB_USERNAME"
-          echo "DB_PASSWORD: $DB_PASSWORD"
-          echo "DB_NAME: $DB_NAME"
+          echo "RDS_HOST: ${{ secrets.RDS_HOST }}"
+          echo "DB_USERNAME: ${{ secrets.DB_USERNAME }}"
+          echo "DB_PASSWORD: ${{ secrets.DB_PASSWORD }}"
+          echo "DB_NAME: ${{ secrets.DB_NAME }}"
         env:
           RDS_HOST: ${{ secrets.RDS_HOST }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
