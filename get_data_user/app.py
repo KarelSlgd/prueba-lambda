@@ -1,11 +1,11 @@
-import os
 import json
 import pymysql
 
-rds_host = os.getenv('RDS_HOST')
-name = os.getenv('RDS_USER')
-password = os.getenv('RDS_PASSWORD')
-db_name = os.getenv('RDS_DB_NAME')
+rds_host = 'integradora-desarrollo.cd4gi2og06nk.us-east-2.rds.amazonaws.com'
+name = 'root'
+password = 'superroot'
+db_name = 'coauto'
+
 
 def lambda_handler(event, context):
     connection = pymysql.connect(
