@@ -18,7 +18,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'
-
+      - name: Install dependencies for get_data_user
+        run: |
+          cd get_data_user
+          pip install -r requirements.txt
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
@@ -38,7 +41,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'
-
+      - name: Install dependencies for get_data_user
+        run: |
+          cd get_data_user
+          pip install -r requirements.txt
       - name: Install AWS CLI
         run: |
           sudo apt-get update
