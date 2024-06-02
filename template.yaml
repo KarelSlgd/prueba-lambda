@@ -25,6 +25,13 @@ Resources:
           Properties:
             Path: /hello
             Method: get
+
+  StudentApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: StudentApi
+      StageName: Prod
+      
   GetDataUserFunction:
     Type: AWS::Serverless::Function
     Properties:
