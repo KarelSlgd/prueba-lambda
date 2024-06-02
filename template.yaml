@@ -58,5 +58,5 @@ Resources:
 
 Outputs:
   GetDataUserApiUrl:
-    Description: "API Gateway endpoint URL with path get_data for Prod stage to Student Model"
+    Description: "API Gateway endpointasdsaasdasdsda URL with path get_data for Prod stage to Student Model"
     Value: !Sub "https://${UserApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get_data"
