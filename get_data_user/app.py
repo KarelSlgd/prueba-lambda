@@ -32,6 +32,15 @@ def lambda_handler(event, context):
                 }
                 users.append(user)
 
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "body": json.dumps({
+                "message": "Error users",
+                "error": str(e)
+            }),
+        }
+
     finally:
         connection.close()
 
