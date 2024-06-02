@@ -3,11 +3,11 @@ import pymysql
 import os
 
 def lambda_handler(event, context):
-    rds_host = os.environ['RDS_HOST']
-    name = os.environ['DB_USERNAME']
-    password = os.environ['DB_PASSWORD']
-    db_name = os.environ['DB_NAME']
-
+    rds_host = os.getenv('RDS_HOST')
+    name = os.getenv('DB_USERNAME')
+    password = os.getenv('DB_PASSWORD')
+    db_name = os.getenv('DB_NAME')
+    
     connection = pymysql.connect(
         host=rds_host,
         user=name,
