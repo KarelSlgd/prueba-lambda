@@ -2,12 +2,12 @@ import json
 import pymysql
 import os
 
-def lambda_handler(event, context):
-    rds_host = os.environ['RDS_HOST']
-    name = os.environ['DB_USERNAME']
-    password = os.environ['DB_PASSWORD']
-    db_name = os.environ['DB_NAME']
+rds_host = os.environ['RDS_HOST']
+name = os.environ['DB_USERNAME']
+password = os.environ['DB_PASSWORD']
+db_name = os.environ['DB_NAME']
 
+def lambda_handler(event, context):
     connection = pymysql.connect(
         host=rds_host,
         user=name,
