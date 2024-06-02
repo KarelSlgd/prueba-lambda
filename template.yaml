@@ -25,20 +25,20 @@ Resources:
           Properties:
             Path: /hello
             Method: get
-  GetDataStudentFunction:
+  GetDataUserFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: get_data_user/
       Handler: app.lambda_handler
-      Runtime: python3.9
+      Runtime: python3.12
       Role: !GetAtt LambdaExecutionRole.Arn
       Architectures:
         - x86_64
       Events:
-        GetDataStudent:
+        GetDataUser:
           Type: Api
           Properties:
-            RestApiId: !Ref StudentApi
+            RestApiId: !Ref UserApi
             Path: /get_data
             Method: get
 
@@ -55,6 +55,6 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
-  GetDataStudentApiUrl:
+  GetDataUserApiUrl:
     Description: "API Gateway endpoint URL with path get_data for Prod stage to Student Model"
-    Value: !Sub "https://${StudentApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get_user"
+    Value: !Sub "https://${UserApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get_user"
