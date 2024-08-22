@@ -9,6 +9,12 @@ Globals:
   Function:
     Timeout: 3
 
+Parameters:
+  PRUEBA:
+    Type: String
+  PRUEBA2:
+    Type: String
+
 Resources:
 
   LambdaExecutionRole:
@@ -32,14 +38,29 @@ Resources:
                   - logs:CreateLogStream
                   - logs:PutLogEvents
                 Resource: arn:aws:logs:*:*:*
+              - Effect: Allow
+                Action:
+                  - secretsmanager:GetSecretValue
+                Resource: arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:*
 
-  UserApi:
+  CoAutoSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name: !Sub "${AWS::StackName}-Secret"
+      SecretString:
+        Fn::Sub: |
+          {
+            "PRUEBA": "${PRUEBA}",
+            "PRUEBA2": "${PRUEBA2}"
+          }
+
+  UsApi:
     Type: AWS::Serverless::Api
     Properties:
-      Name: UserApi
+      Name: UsApi
       StageName: Prod
 
-  GetDataUserFunction:
+  GetDataFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: get_data_user/
@@ -49,14 +70,14 @@ Resources:
       Architectures:
         - x86_64
       Events:
-        GetDataUser:
+        GetData:
           Type: Api
           Properties:
-            RestApiId: !Ref UserApi
-            Path: /get_data
+            RestApiId: !Ref UsApi
+            Path: /geeet
             Method: get
 
 Outputs:
-  GetDataUserApiUrl:
+  GetDataApiUrl:
     Description: "API Gateway endpoint URL with path get_data for Prod stage to Student Model"
-    Value: !Sub "https://${UserApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get_data"
+    Value: !Sub "https://${UsApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/geeet"
